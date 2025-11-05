@@ -1,0 +1,176 @@
+/* --- 背景图片设置 --- */
+body {
+    position: relative;
+    min-height: 100vh;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url('../../static/img/background/background.png');
+    background-position: right 60px;  /* 向下移动 60px，避开顶栏 */
+    background-repeat: no-repeat;
+    background-size: auto 90%;  /* 缩小到原来的 90% */
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: -1;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+/* 暗色模式下反转图片颜色 */
+body.dark::before {
+    filter: invert(1);
+    opacity: 0.1;
+}
+
+/* --- 核心布局：两栏容器 --- */
+.main-container {
+    display: flex; /* 使用 Flexbox 进行布局 */
+    width: 100%;
+    min-height: 100vh; /* 确保容器至少占满整个视口高度 */
+    position: relative; /* 确保内容在背景之上 */
+}
+
+/* 侧边栏触发区 */
+.sidebar-trigger {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 10px; /* 窄小的触发区域 */
+    height: 100vh;
+    z-index: 998; /* 确保在侧边栏之下 */
+    background: transparent; /* 透明背景 */
+}
+
+/* --- 左侧：固定的侧边栏 --- */
+.sidebar-fixed {
+    width: 260px; /* 侧边栏的固定宽度 */
+    height: 100vh; /* 高度占满整个屏幕 */
+    position: fixed; /* 固定在屏幕左侧，不随滚动条滚动 */
+    top: 0;
+    left: 0;
+    background: #f5f5f7; /* 一个柔和的浅灰色背景 */
+    border-right: 1px solid #e0e0e0; /* 右边加一条细线分隔 */
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    transform: translateX(-100%); /* 默认隐藏 */
+    transition: transform 0.3s ease; /* 平滑过渡效果 */
+    z-index: 999; /* 确保显示在最上层 */
+}
+
+/* 适配夜间模式 */
+body.dark .sidebar-fixed {
+    background: #252525;
+    border-right: 1px solid #333;
+}
+
+/* 侧边栏头部：网站标题 */
+.sidebar-header {
+    margin-bottom: 30px;
+}
+
+.sidebar-header a {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+}
+
+body.dark .sidebar-header a {
+    color: #eee;
+}
+
+/* 侧边栏导航列表 */
+.sidebar-nav .nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav .nav-item a {
+    display: block;
+    padding: 12px;
+    margin-bottom: 5px;
+    color: #555;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+}
+
+body.dark .sidebar-nav .nav-item a {
+    color: #aaa;
+}
+
+.sidebar-nav .nav-item a:hover {
+    background: #e9e9eb;
+    color: #111;
+}
+
+body.dark .sidebar-nav .nav-item a:hover {
+    background: #333;
+    color: #fff;
+}
+
+.sidebar-nav .nav-item strong {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.sidebar-nav .nav-item small {
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+/* --- 右侧：主内容区 --- */
+.main-content {
+    flex: 1; /* 占据所有剩余的空间 */
+    margin-left: 10px; /* 与触发区域宽度相同 */
+    padding: 20px; /* 给内容区一点内边距 */
+    transition: margin-left 0.3s ease; /* 平滑过渡效果 */
+    position: relative; /* 确保内容在背景之上 */
+    z-index: 1;
+}
+
+/* 给文章内容添加背景 */
+.page-title,
+.page-content,
+.categories-content,
+.category-content {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    margin-bottom: 20px;
+}
+
+/* 暗色模式下的内容背景 */
+body.dark .page-title,
+body.dark .page-content,
+body.dark .categories-content,
+body.dark .category-content {
+    background: rgba(30, 30, 30, 0.8);
+}
+
+/* 侧边栏过渡效果 */
+.sidebar-fixed,
+.main-content {
+    transition: all 0.3s ease;
+}
+
+/* 清理旧的 header，因为它现在被侧边栏取代了 */
+header.head {
+    display: none !important;
+}
+
+/* 调整上侧栏的宽度和样式 */
+header {
+    height: 3rem;  /* 减小高度 */
+    padding: 0 1rem;  /* 添加水平内边距 */
+}
+
