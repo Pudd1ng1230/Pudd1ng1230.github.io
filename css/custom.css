@@ -245,6 +245,72 @@ pre code {
     color: var(--text-white);
 }
 
+/* 下拉面板样式 */
+.panel-container {
+    position: fixed;
+    top: 3rem;
+    left: 0;
+    width: 100%;
+    background: var(--bg-darker);
+    border-bottom: 1px solid var(--border-color);
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    z-index: 997;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.panel-container.active {
+    transform: translateY(0);
+}
+
+.panel-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.panel-section {
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--bg-dark);
+}
+
+.panel-section h3 {
+    color: var(--primary-blue);
+    margin: 0 0 15px 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.panel-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.panel-section li {
+    margin-bottom: 8px;
+}
+
+.panel-section a {
+    color: var(--text-white);
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    padding: 5px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+}
+
+.panel-section a:hover {
+    background: rgba(0, 122, 204, 0.1);
+    color: var(--primary-blue);
+}
+
 /* 表格样式 */
 table {
     width: 100%;
