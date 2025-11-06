@@ -378,9 +378,9 @@ header{
 
 /* 2 - 正文
 -------------------------------- */
-main{
-    padding: 3.5em 0;
-    margin-top: 3.2em;
+main {
+    padding: 1em 0 3em; /* 将顶部内边距调整为1em */
+    flex: 1;
 }
 
 main img {

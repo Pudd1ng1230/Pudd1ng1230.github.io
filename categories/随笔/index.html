@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh">
   <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="/css/category.css">
     <script src="/static/sidebar.js"></script>
     
     <meta charset="UTF-8">
-    <title>随笔 - Pudd1ng</title>
+    <title>Pudd1ng</title>
     <link rel="shortcut icon" href="/static/img/icon.png">
     <link rel="icon" href="/static/img/icon.png" sizes="192x192"/>
     
@@ -22,144 +24,109 @@
 <meta name="generator" content="Hexo 7.3.0"></head>
 
   <body>
-  <!-- START: 两栏布局容器 -->
-  <div class="main-container">
-      
+    
+
+<header>
+    <!-- 左侧 Logo -->
+    <a href="/" class="header-logo">
+        🍮
+    </a>
+    
+    <!-- 中间图标导航 -->
+    <nav class="header-nav">
+        <a href="/explore" class="nav-item" title="探索">
+            <i class="fas fa-compass"></i>
+        </a>
+        <a href="/create" class="nav-item" title="创作">
+            <i class="fas fa-pencil-alt"></i>
+        </a>
+        <a href="/interests" class="nav-item" title="兴趣">
+            <i class="fas fa-heart"></i>
+        </a>
+    </nav>
+
+    <!-- 右侧社交链接 -->
+    <div class="header-social">
+        <a href="https://space.bilibili.com/415486087" class="social-item" title="哔哩哔哩" target="_blank">
+            <i class="fab fa-bilibili"></i>
+        </a>
+        <a href="https://github.com/Pudd1ng1230" class="social-item" title="GitHub" target="_blank">
+            <i class="fab fa-github"></i>
+        </a>
+    </div>
+</header>
+
+
+
+    
+    <div class="main-container">
       <!-- 侧边栏触发区 -->
       <div class="sidebar-trigger"></div>
 
       <!-- 左侧：固定的侧边栏 -->
       <aside class="sidebar-fixed">
-          <div class="sidebar-header">
-              <a href="/">Pudd1ng</a>
-          </div>
-          <nav class="sidebar-nav">
-              <ul class="nav-list">
-                  <li class="nav-item">
-                      <a href="/categories/探索/">
-                          <strong>探索</strong>
-                          <small>qaq</small>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="/categories/算法/">
-                          <strong>算法</strong>
-                          <small>好想成为人类啊</small>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="/categories/日常/">
-                          <strong>日常</strong>
-                          <small>qaq</small>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="/categories/随笔/">
-                          <strong>随笔</strong>
-                          <small>qaq</small>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="/categories/摄影/">
-                          <strong>摄影</strong>
-                          <small>qaq</small>
-                      </a>
-                  </li>
-              </ul>
-          </nav>
+        <div class="sidebar-header">
+          <a href="/">Pudd1ng</a>
+        </div>
+        <nav class="sidebar-nav">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="/explore" class="sidebar-link">
+                <strong>探索</strong>
+                <small>发现有趣的内容</small>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/create" class="sidebar-link">
+                <strong>创作</strong>
+                <small>分享我的作品</small>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/interests">
+                <strong>兴趣</strong>
+                <small>我的爱好集合</small>
+              </a>
+            </li>
+          </ul>
+        </nav>
       </aside>
 
-      <!-- 右侧：可滚动的主内容区 -->
       <main class="main-content">
 
 
-    
-
-<header>
-    <div class="head-title">
-        <h4>Pudd1ng</h4>
-    </div>
-    <div class="head-action">
-        <div class="toggle-btn" id="panelToggle"></div>
-        <div class="light-btn"></div>
-        <div class="search-btn"></div>
-    </div>
-    <form class="head-search" method="post">
-        <input type="text" name="s" placeholder="搜索什么？">
-    </form>
-</header>
-
-<!-- 下拉面板 -->
-<div class="panel-container">
-    <div class="panel-grid">
-        <div class="panel-section">
-            <h3>关于</h3>
-            <ul>
-                <li><a href="/about">关于我</a></li>
-                <li><a href="/timeline">时间轴</a></li>
-                <li><a href="/friends">朋友们</a></li>
-            </ul>
-        </div>
-        <div class="panel-section">
-            <h3>动态</h3>
-            <ul>
-                <li><a href="/blog">日记</a></li>
-                <li><a href="/blog-timeline">日记时间轴</a></li>
-                <li><a href="/notes">心得</a></li>
-                <li><a href="/projects">项目</a></li>
-            </ul>
-        </div>
-        <div class="panel-section">
-            <h3>兴趣</h3>
-            <ul>
-                <li><a href="/photography">摄影</a></li>
-                <li><a href="/music">歌单</a></li>
-                <li><a href="/anime">番剧</a></li>
-                <li><a href="/equipment">装备</a></li>
-            </ul>
-        </div>
-        <div class="panel-section">
-            <h3>与我互动</h3>
-            <ul>
-                <li><a href="/comments">加群讨论</a></li>
-                <li><a href="/guestbook">订阅日记</a></li>
-                <li><a href="/live">哔哩直播间</a></li>
-                <li><a href="/contact">订阅博客</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-
-    <main>
+      
+<main>
     <div class="wrap min">
         <section class="page-title">
-            <h2>分类: 随笔</h2>
+            <h2>分类</h2>
         </section>
-        <article class="category-content">
-            <div class="category-header">
-                <h3>随笔</h3>
-                <span class="post-count">共 1 篇文章</span>
-            </div>
-
+        <article class="categories-content">
             
-                <div class="post-list">
-                    
-                        <div class="post-item">
-                            <div class="post-date">2025-10-01</div>
-                            <div class="post-title">
-                                <a href="/2025/10/01/hello-world/">这是一个test——</a>
-                            </div>
-                        </div>
-                    
+                <div class="category-header">
+                    <h3>随笔</h3>
+                    <span class="post-count">共 0 篇文章</span>
                 </div>
+
+                
+                    <div class="empty-category">
+                        <div class="empty-icon">📝</div>
+                        <h4>这个分类还没有文章呢~</h4>
+                        <p>抱歉，看起来「随笔」分类下还没有任何文章。</p>
+                        <p>您可以：</p>
+                        <ul>
+                            <li><a href="/categories/">查看所有分类</a></li>
+                            <li>返回<a href="/">首页</a>浏览最新内容</li>
+                        </ul>
+                    </div>
+                
             
         </article>
     </div>
 </main>
 
 <style>
-.category-content {
+.categories-content {
     padding: 20px 0;
 }
 
@@ -212,13 +179,48 @@
     color: #0066cc;
 }
 
-.empty-category {
+.categories-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.category-item {
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.category-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.category-link {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #333;
+}
+
+.category-name {
+    display: block;
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.category-link .post-count {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.empty-category,
+.empty-categories {
     text-align: center;
     padding: 50px 20px;
     color: #666;
-    background: #f8f9fa;
-    border-radius: 8px;
-    margin: 20px 0;
 }
 
 .empty-icon {
@@ -226,33 +228,32 @@
     margin-bottom: 20px;
 }
 
-.empty-category h4 {
+.empty-category h4,
+.empty-categories h4 {
     margin: 0 0 15px;
     color: #333;
-    font-size: 1.4em;
 }
 
-.empty-category p {
+.empty-category p,
+.empty-categories p {
     margin: 10px 0;
-    font-size: 1.1em;
 }
 
-.empty-category ul {
+.empty-category ul,
+.empty-categories ul {
     list-style: none;
     padding: 0;
     margin: 15px 0 0;
 }
 
-.empty-category li {
-    margin: 8px 0;
-}
-
-.empty-category a {
+.empty-category a,
+.empty-categories a {
     color: #0066cc;
     text-decoration: none;
 }
 
-.empty-category a:hover {
+.empty-category a:hover,
+.empty-categories a:hover {
     text-decoration: underline;
 }
 
@@ -277,43 +278,88 @@ body.dark .post-title a:hover {
     color: #66b1ff;
 }
 
-body.dark .empty-category {
+body.dark .category-item {
     background: #2d2d2d;
 }
 
-body.dark .empty-category h4 {
+body.dark .category-link {
     color: #eee;
 }
 
-body.dark .post-date,
-body.dark .category-header .post-count {
-    color: #999;
+body.dark .empty-category h4,
+body.dark .empty-categories h4 {
+    color: #eee;
 }
 </style>
-    <footer>
+      <footer>
     <div class="buttons">
         <button class="to-top" href="#"></button>
     </div>
-    <div class="wrap min">
+    <div class="wrap">
+        <!-- 主要导航链接 -->
+        <section class="footer-nav">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>关于</h3>
+                    <ul>
+                        <li><a href="/about">关于我</a></li>
+                        <!-- <li><a href="/timeline">时间轴</a></li> -->
+                        <li><a href="/friends">朋友们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>动态</h3>
+                    <ul>
+                        <li><a href="/blog">日记</a></li>
+                        <!-- <li><a href="/blog-timeline">日记时间轴</a></li> -->
+                        <!-- <li><a href="/notes">心得</a></li> -->
+                        <li><a href="/projects">项目</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>兴趣</h3>
+                    <ul>
+                        <li><a href="/photography">摄影</a></li>
+                        <li><a href="/equipment">音乐</a></li>
+                        <li><a href="/music">歌单</a></li>
+                        <!-- <li><a href="/anime">番剧</a></li> -->
+                        
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我</h3>
+                    <ul>
+                        <li><a href="/comments">QQ</a></li>
+                        <li><a href="/guestbook">哔哩哔哩</a></li>
+                        <li><a href="/live">Github</a></li>
+                        <li><a href="/contact">订阅博客</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 暂时注释掉博客信息部分
         <section class="widget">
             <div class="row">
                 <div class="col-m-4">
                     <h3 class="title-recent">最新文章：</h3>
-                    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2025/11/05/test-category/">测试文章</a></li><li class="post-list-item"><a class="post-list-link" href="/2025/10/02/Hello-World-0/">Hello-World</a></li><li class="post-list-item"><a class="post-list-link" href="/2025/10/01/hello-world/">这是一个test——</a></li></ul>
+                    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2025/11/06/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/">测试</a></li></ul>
                 </div>
                 <div class="col-m-4">
                     <h3 class="title-date">时光机：</h3>
-                    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/11/">十一月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">十月 2025</a></li></ul>
+                    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/11/">十一月 2025</a></li></ul>
                 </div>
                 <div class="col-m-4">
                     <h3 class="title-tags">标签云：</h3>
-                    <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">测试</a>
+                    <a href="/tags/%E6%AC%A2%E8%BF%8E/" style="font-size: 10px;">欢迎</a>
                 </div>
             </div>
         </section>
         <section class="sub-footer">
             <p>© 2025 <a href="/">Pudd1ng</a>. All Rights Reserved. Theme By <a href="https://github.com/Dreamer-Paul/Hingle" target="_blank" rel="nofollow">Hingle</a>.</p>
         </section>
+-->
+        
     </div>
 </footer>
 
@@ -324,12 +370,6 @@ body.dark .category-header .post-count {
 
 <script>var hingle = new Paul_Hingle({"copyright":true,"night":true});</script>
 
-
-
-  </main> <!-- 关闭 main-content -->
-  </div> <!-- 关闭 main-container -->
-  <!-- END: 两栏布局容器 -->
-
-  <script src="/static/panel.js"></script>
+    </main>
   </body>
 </html>

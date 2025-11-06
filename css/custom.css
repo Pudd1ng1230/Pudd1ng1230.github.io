@@ -2,29 +2,29 @@
 :root {
     --primary-blue: #007ACC;
     --hover-blue: #1C8ADB;
-    --text-white: #E1E1E1;
-    --bg-dark: #1E1E1E;
-    --bg-darker: #252526;
-    --border-color: #454545;
+    --text-color: #333333;
+    --bg-light: #FFFFFF;
+    --bg-lighter: #F5F5F5;
+    --border-color: #E0E0E0;
 }
 
 body {
     position: relative;
     min-height: 100vh;
-    background-color: var(--bg-dark);
-    color: var(--text-white);
+    background-color: var(--bg-light);
+    color: var(--text-color);
     font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body::after {
     content: '';
     position: fixed;
-    top: 0;
+    top: 3.5rem; /* 调整到顶栏高度的位置 */
     right: 0;
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 3.5rem); /* 减去顶栏高度 */
     background-image: url('../../static/img/background/background.png');
-    background-position: right 60px;
+    background-position: right top;
     background-repeat: no-repeat;
     background-size: auto 90%;
     opacity: 0.08;
@@ -52,11 +52,12 @@ body::after {
     background: var(--primary-blue);
 }
 
-/* 暗色模式下反转图片颜色 */
+/* 暗色模式下反转图片颜色 - 暂时禁用
 body.dark::before {
     filter: invert(1);
     opacity: 0.1;
 }
+*/
 
 /* --- 核心布局：两栏容器 --- */
 .main-container {
@@ -71,10 +72,10 @@ body.dark::before {
     position: fixed;
     left: 0;
     top: 0;
-    width: 10px; /* 窄小的触发区域 */
+    width: 10px;
     height: 100vh;
-    z-index: 998; /* 确保在侧边栏之下 */
-    background: transparent; /* 透明背景 */
+    z-index: 998;
+    background: transparent;
 }
 
 /* --- 左侧：固定的侧边栏 --- */
@@ -84,65 +85,55 @@ body.dark::before {
     position: fixed;
     top: 0;
     left: 0;
-    background: var(--bg-darker);
+    background: var(--bg-light);
     border-right: 1px solid var(--border-color);
     padding: 20px;
     box-sizing: border-box;
     font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
     transform: translateX(-100%);
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease;
     z-index: 999;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* 适配夜间模式 */
-body.dark .sidebar-fixed {
-    background: #252525;
-    border-right: 1px solid #333;
-}
-
-/* 侧边栏头部：网站标题 */
+/* 侧边栏头部 */
 .sidebar-header {
     margin-bottom: 30px;
+    padding-top: 3.5rem; /* 为顶栏留出空间 */
 }
 
 .sidebar-header a {
     font-size: 24px;
     font-weight: 600;
-    color: #333;
+    color: var(--text-color);
     text-decoration: none;
 }
 
-body.dark .sidebar-header a {
-    color: #eee;
-}
-
-/* 侧边栏导航列表 */
+/* 侧边栏导航 */
 .sidebar-nav .nav-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
+.sidebar-nav .nav-item {
+    margin-bottom: 10px;
+}
+
 .sidebar-nav .nav-item a {
     display: block;
     padding: 12px;
-    margin-bottom: 5px;
-    color: var(--text-white);
+    color: var(--text-color);
     text-decoration: none;
     border-radius: 4px;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease;
     border: 1px solid transparent;
 }
 
 .sidebar-nav .nav-item a:hover {
-    background: rgba(var(--primary-blue), 0.1);
+    background: rgba(0, 122, 204, 0.1);
     border-color: var(--primary-blue);
     color: var(--primary-blue);
-}
-
-.sidebar-nav .nav-item a:active {
-    background: rgba(var(--primary-blue), 0.2);
 }
 
 .sidebar-nav .nav-item strong {
@@ -152,16 +143,17 @@ body.dark .sidebar-header a {
 }
 
 .sidebar-nav .nav-item small {
+    display: block;
     font-size: 12px;
     opacity: 0.7;
+    margin-top: 4px;
 }
 
-/* --- 右侧：主内容区 --- */
+/* --- 主内容区 --- */
 .main-content {
     flex: 1; /* 占据所有剩余的空间 */
-    margin-left: 10px; /* 与触发区域宽度相同 */
     padding: 20px; /* 给内容区一点内边距 */
-    transition: margin-left 0.3s ease; /* 平滑过渡效果 */
+    padding-top: calc(3.5rem + 20px); /* 顶栏高度 + 内边距 */
     position: relative; /* 确保内容在背景之上 */
     z-index: 1;
 }
@@ -171,12 +163,11 @@ body.dark .sidebar-header a {
 .page-content,
 .categories-content,
 .category-content {
-    background: var(--bg-darker);
+    background: var(--bg-light);
     padding: 20px;
     border-radius: 4px;
     margin-bottom: 20px;
     border: 1px solid var(--border-color);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .page-title h1,
@@ -209,16 +200,125 @@ header.head {
     display: none !important;
 }
 
-/* 调整上侧栏的宽度和样式 */
+/* 顶栏样式 */
 header {
-    height: 3rem;
-    padding: 0 1rem;
-    background: var(--bg-darker);
+    height: 3.5rem;
+    padding: 0 1.5rem;
+    background: var(--bg-light);
     border-bottom: 1px solid var(--border-color);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+/* Logo样式 */
+.header-logo {
+    font-size: 1.5rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.header-logo:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    text-decoration: none;
+}
+
+/* 导航区域样式 */
+.header-nav {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-item {
+    position: relative;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.nav-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.nav-item i {
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+/* 下拉菜单样式 */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.5rem 0;
+    min-width: 150px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.nav-item:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.dropdown-menu a:hover {
+    background: rgba(0, 122, 204, 0.1);
+    color: var(--primary-blue);
+}
+
+/* 右侧社交链接样式 */
+.header-social {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.social-item {
+    color: var(--text-color);
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    font-size: 1.2rem;
+}
+
+.social-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--primary-blue);
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+/* 调整主内容区域，避免被固定顶栏遮挡 */
+.main-content {
+    margin-top: 3.5rem;
 }
 
 /* 代码块样式 */
@@ -248,15 +348,15 @@ pre code {
 /* 下拉面板样式 */
 .panel-container {
     position: fixed;
-    top: 3rem;
+    top: 0;
     left: 0;
     width: 100%;
-    background: var(--bg-darker);
+    background: var(--bg-light);
     border-bottom: 1px solid var(--border-color);
     transform: translateY(-100%);
     transition: transform 0.3s ease;
     z-index: 997;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .panel-container.active {
@@ -276,7 +376,7 @@ pre code {
     padding: 15px;
     border: 1px solid var(--border-color);
     border-radius: 4px;
-    background: var(--bg-dark);
+    background: var(--bg-lighter);
 }
 
 .panel-section h3 {
@@ -297,7 +397,7 @@ pre code {
 }
 
 .panel-section a {
-    color: var(--text-white);
+    color: var(--text-color);
     text-decoration: none;
     font-size: 14px;
     display: block;
@@ -336,6 +436,92 @@ blockquote {
     padding: 0.5em 1em;
     background: var(--bg-darker);
     color: var(--text-white);
+}
+
+/* 底部导航样式 */
+footer {
+    margin-top: 3rem;
+    padding: 2rem 0;
+    background: var(--bg-lighter);
+    border-top: 1px solid var(--border-color);
+}
+
+footer .wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 主导航网格布局 */
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.footer-section h3 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-section a:hover {
+    color: var(--primary-blue);
+}
+
+/* 博客信息部分 */
+.widget .row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.widget h3 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+footer li {
+    margin-bottom: 0.5rem;
+}
+
+footer a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+footer a:hover {
+    color: var(--primary-blue);
 }
 
 /* 按钮样式 */
