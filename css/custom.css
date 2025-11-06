@@ -1,7 +1,19 @@
-/* --- 背景图片设置 --- */
+/* --- 背景和基础样式设置 --- */
+:root {
+    --primary-blue: #007ACC;
+    --hover-blue: #1C8ADB;
+    --text-white: #E1E1E1;
+    --bg-dark: #1E1E1E;
+    --bg-darker: #252526;
+    --border-color: #454545;
+}
+
 body {
     position: relative;
     min-height: 100vh;
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body::after {
@@ -12,13 +24,32 @@ body::after {
     width: 100%;
     height: 100vh;
     background-image: url('../../static/img/background/background.png');
-    background-position: right 60px;  /* 向下移动 60px，避开顶栏 */
+    background-position: right 60px;
     background-repeat: no-repeat;
-    background-size: auto 90%;  /* 缩小到原来的 90% */
-    opacity: 0.15;
+    background-size: auto 90%;
+    opacity: 0.08;
     pointer-events: none;
     z-index: -1;
     transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-darker);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-blue);
 }
 
 /* 暗色模式下反转图片颜色 */
@@ -48,19 +79,20 @@ body.dark::before {
 
 /* --- 左侧：固定的侧边栏 --- */
 .sidebar-fixed {
-    width: 260px; /* 侧边栏的固定宽度 */
-    height: 100vh; /* 高度占满整个屏幕 */
-    position: fixed; /* 固定在屏幕左侧，不随滚动条滚动 */
+    width: 260px;
+    height: 100vh;
+    position: fixed;
     top: 0;
     left: 0;
-    background: #f5f5f7; /* 一个柔和的浅灰色背景 */
-    border-right: 1px solid #e0e0e0; /* 右边加一条细线分隔 */
+    background: var(--bg-darker);
+    border-right: 1px solid var(--border-color);
     padding: 20px;
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    transform: translateX(-100%); /* 默认隐藏 */
-    transition: transform 0.3s ease; /* 平滑过渡效果 */
-    z-index: 999; /* 确保显示在最上层 */
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    z-index: 999;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
 }
 
 /* 适配夜间模式 */
@@ -96,24 +128,21 @@ body.dark .sidebar-header a {
     display: block;
     padding: 12px;
     margin-bottom: 5px;
-    color: #555;
+    color: var(--text-white);
     text-decoration: none;
-    border-radius: 6px;
+    border-radius: 4px;
     transition: all 0.2s ease-in-out;
-}
-
-body.dark .sidebar-nav .nav-item a {
-    color: #aaa;
+    border: 1px solid transparent;
 }
 
 .sidebar-nav .nav-item a:hover {
-    background: #e9e9eb;
-    color: #111;
+    background: rgba(var(--primary-blue), 0.1);
+    border-color: var(--primary-blue);
+    color: var(--primary-blue);
 }
 
-body.dark .sidebar-nav .nav-item a:hover {
-    background: #333;
-    color: #fff;
+.sidebar-nav .nav-item a:active {
+    background: rgba(var(--primary-blue), 0.2);
 }
 
 .sidebar-nav .nav-item strong {
@@ -142,19 +171,31 @@ body.dark .sidebar-nav .nav-item a:hover {
 .page-content,
 .categories-content,
 .category-content {
-    background: rgba(255, 255, 255, 0.8);
+    background: var(--bg-darker);
     padding: 20px;
-    border-radius: 8px;
-    backdrop-filter: blur(5px);
+    border-radius: 4px;
     margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* 暗色模式下的内容背景 */
-body.dark .page-title,
-body.dark .page-content,
-body.dark .categories-content,
-body.dark .category-content {
-    background: rgba(30, 30, 30, 0.8);
+.page-title h1,
+.page-title h2,
+.page-title h3 {
+    color: var(--primary-blue);
+    margin-top: 0;
+}
+
+/* 链接样式 */
+a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--hover-blue);
+    text-decoration: underline;
 }
 
 /* 侧边栏过渡效果 */
@@ -170,7 +211,81 @@ header.head {
 
 /* 调整上侧栏的宽度和样式 */
 header {
-    height: 3rem;  /* 减小高度 */
-    padding: 0 1rem;  /* 添加水平内边距 */
+    height: 3rem;
+    padding: 0 1rem;
+    background: var(--bg-darker);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* 代码块样式 */
+pre, code {
+    background: var(--bg-darker);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+
+code {
+    padding: 2px 6px;
+    color: var(--primary-blue);
+}
+
+pre {
+    padding: 16px;
+    overflow-x: auto;
+}
+
+pre code {
+    border: none;
+    padding: 0;
+    color: var(--text-white);
+}
+
+/* 表格样式 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+
+th, td {
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-darker);
+}
+
+th {
+    background: var(--primary-blue);
+    color: var(--text-white);
+}
+
+/* 引用块样式 */
+blockquote {
+    border-left: 4px solid var(--primary-blue);
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    background: var(--bg-darker);
+    color: var(--text-white);
+}
+
+/* 按钮样式 */
+.button {
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--primary-blue);
+    color: var(--text-white);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.button:hover {
+    background: var(--hover-blue);
+    text-decoration: none;
 }
 
